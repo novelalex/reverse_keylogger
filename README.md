@@ -50,7 +50,7 @@ Mouse movement:
   <x> <y> - Move the mouse to the coordinates
 ```
 
-Gain access to the terminal
+Gain access to the terminal (⊙＿⊙')
 ```
 ReverseKeylogger> ks win+r
 ReverseKeylogger> kt cmd
