@@ -50,11 +50,13 @@ Mouse movement:
   <x> <y> - Move the mouse to the coordinates
 ```
 
-Gain access to the terminal (⊙＿⊙')
-```
-ReverseKeylogger> ks win+r
-ReverseKeylogger> kt cmd
-ReverseKeylogger> ka enter
+You could write scripts to if you really wanted to
+```bash
+$ echo "ks win+r
+> kt cmd
+> ka enter" >> open_terminal.txt
+
+$ echo "http://localhost:5000" | cat - open_terminal.txt | python3 reverse-keylogger.py
 ```
 ---
 
