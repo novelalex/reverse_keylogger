@@ -10,7 +10,7 @@ It's not very good, definitely not safe, not useful at all, but it works.
 ## Installation (please don't)
 Clone the repo and install the requirements
 ```bash
-git clone
+git clone https://github.com/novelalex/reverse_keylogger.git
 cd reverse-keylogger
 pip install -r requirements.txt
 ```
@@ -65,7 +65,8 @@ At the end of the day this is done with `GET` requests, so you can just use a br
 
 Or curl
 ```bash
-curl http://localhost:5000/mouse/move/100/300
+$ curl http://localhost:5000/mouse/move/100/300
+Mouse moved to: 100, 300
 ```
 
 ---
