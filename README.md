@@ -58,6 +58,15 @@ $ echo "ks win+r
 
 $ echo "http://localhost:5000" | cat - open_terminal.txt | python3 reverse-keylogger.py
 ```
----
 
+At the end of the day this is done with `GET` requests, so you can just use a browser
+
+![Browser navigating to http://localhost:5000/mouse/move/100/300](https://github.com/novelalex/reverse_keylogger/blob/master/media/browser_screenshot.png?raw=true)
+
+Or curl
+```bash
+curl http://localhost:5000/mouse/move/100/300
+```
+
+---
 All of this implies that you have the power to start a server on the target computer, if you do, you probably don't need this.
