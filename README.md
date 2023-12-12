@@ -29,7 +29,7 @@ The script will prompt you for the target's url
 ```
 Enter the URL: http://localhost:5000
 ```
-After that, you can enter keyboard and mouse events, the script will send them to the target computer.
+Help displays all the commands
 ```
 ReverseKeylogger> help
 Commands:
@@ -43,9 +43,18 @@ Commands:
   clear - Clear the screen
   quit - Exit the program
 ```
+Type `help <command>` to get more information about a command
+```
+ReverseKeylogger> help mm
+Mouse movement:
+  <x> <y> - Move the mouse to the coordinates
+```
 
+Gain access to the terminal
 ```
 ReverseKeylogger> ks win+r
 ReverseKeylogger> kt cmd
 ReverseKeylogger> ka enter
 ```
+
+All of this implies that you have the power to start a server on the target computer, if you do, you probably don't need this.
