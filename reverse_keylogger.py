@@ -25,7 +25,7 @@ keyboard_actions = ['accept', 'add', 'alt', 'altleft', 'altright', 'apps', 'back
 
 while True:
     action = input("ReverseKeylogger> ").split(" ")
-    if action == "help":
+    if action[0] == "help":
         if len(action) == 1:
             print("Commands:")
             print("  [H]elp - Displays this message")
@@ -68,7 +68,7 @@ while True:
                 print("Invalid command")
         else:
             print("Invalid command")
-    elif action == "ma":
+    elif action[0] == "ma":
         if len(action) == 2:
             if action[1] in mouse_actions:
                 requests.get(url + "/mouse/" + action[1])
@@ -76,12 +76,12 @@ while True:
                 print("Invalid command")
         else:
             print("Invalid command")
-    elif action == "mm":
+    elif action[0] == "mm":
         if len(action) == 3:
             requests.get(url + "/mouse/move/" + action[1] + "/" + action[2])
         else:
             print("Invalid command")
-    elif action == "ka":
+    elif action[0] == "ka":
         if len(action) == 2:
             if action[1] in keyboard_actions:
                 requests.get(url + "/keyboard/" + action[1])
@@ -89,7 +89,7 @@ while True:
                 print("Invalid command")
         else:
             print("Invalid command")
-    elif action == "kr":
+    elif action[0] == "kr":
         if len(action) == 3:
             if action[1] in keyboard_actions and action[2].isdigit():
                 requests.get(url + "/keyboard/repeat/" + action[1] + "/" + action[2])
@@ -97,17 +97,19 @@ while True:
                 print("Invalid command")
         else:
             print("Invalid command")
-    elif action == "ks":
+    elif action[0] == "ks":
         if len(action) == 2:
             requests.get(url + "/keyboard/shortcut/" + action[1])
         else:
             print("Invalid command")
-    elif action == "kt":
+    elif action[0] == "kt":
         if len(action) == 2:
             requests.get(url + '/keyboard/type/"' + action[1] + '"')
         else:
             print("Invalid command")
-    elif action == "q":
+    elif action[0] == "q":
         break
+    else:
+        print("Invalid command")
         
            
