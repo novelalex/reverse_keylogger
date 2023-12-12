@@ -33,13 +33,15 @@ while True:
             print("Mouse actions: " + str(mouse_actions))
             action = input("Enter the action: ").lower()
             if action in mouse_actions:
-                requests.get(url + "/mouse/" + action)
+                response = requests.get(url + "/mouse/" + action)
+                print(response.text)
             else:
                 print("Invalid action")
         elif action == 'm':
             (x, y) = (coord.strip() for coord in input("Enter the coordinates (x,y): ").split(","))
             if x.isdigit() and y.isdigit():
-                requests.get(url + "/mouse/move/" + x.strip() + "/" + y.strip())
+                response = requests.get(url + "/mouse/move/" + x.strip() + "/" + y.strip())
+                print(response.text)
             else:
                 print("Invalid coordinates")
 
@@ -51,16 +53,20 @@ while True:
             if action in keyboard_actions:
                 count = input("Enter the count (default 1): ")
                 if count.isdigit():
-                    requests.get(url + "/keyboard/repeat/" + action + "/" + count)
+                    response = requests.get(url + "/keyboard/repeat/" + action + "/" + count)
+                    print(response.text)
                 else:
-                    requests.get(url + "/keyboard/" + action)
+                    response = requests.get(url + "/keyboard/" + action)
+                    print(response.text)
             else:
                 print("Invalid action")
         elif action == 't':
             word = input("Enter the string to type: ")
-            requests.get(url + '/keyboard/type/"' + word + '"')
+            response = requests.get(url + '/keyboard/type/"' + word + '"')
+            print(response.text)
         elif action == 'h':
             shortcut = input("Enter the shortcut (separate with +): ")
-            requests.get(url + "/keyboard/shortcut/" + shortcut)
+            response = requests.get(url + "/keyboard/shortcut/" + shortcut)
+            print(response.text)
         else:
             print("Invalid action")
