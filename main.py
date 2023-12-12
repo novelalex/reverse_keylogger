@@ -1,6 +1,7 @@
 from flask import Flask, request
 import pyautogui as ag
 import time
+from flask import send_file
 
 
 app = Flask(__name__)
@@ -68,13 +69,19 @@ def screenshot():
 def stream(ms):
     screenshotName = 'screenshot.png'
     ag.screenshot(f'static/{screenshotName}')
-    js = f"""
-    <script>
-    function refresh() {{
-        window.location.reload(true);
+    # js will replace the image every few seconds
+    js = f'''<script>
+    function refresh(){{
+        document.getElementById("screen").src = "/screenshot?" + Math.random();
     }}
-    setTimeout(refresh, {ms});
+    setInterval(refresh, {ms}); 
     </script>
-    """
-    return js + f'<img src="{app.static_url_path}/{screenshotName}" alt="screenshot" width="100%">'
+    '''
+    return '<body>' +f'<img id="screen" src="/screenshot?" + Math.random()>' + js + '</body>'
+
+# Create a route for serving the screenshot image
+@app.route('/screenshot')
+def serve_screenshot():
+    screenshotName = 'screenshot.png'
+    return send_file(f'static/{screenshotName}', mimetype='image/png')
     
