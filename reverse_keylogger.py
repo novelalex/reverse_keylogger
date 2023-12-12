@@ -24,51 +24,90 @@ keyboard_actions = ['accept', 'add', 'alt', 'altleft', 'altright', 'apps', 'back
 'command', 'option', 'optionleft', 'optionright']
 
 while True:
-    action = input("Enter the action ([M]ouse/[K]eyboard) or [Q]uit: ").lower()
-
-    if action == 'q':
-        break
-
-    if action == 'm':
-        action = input("Enter the action ([A]ction/[M]ovement): ").lower()
-        if action == 'a':
-            print("Mouse actions: " + str(mouse_actions))
-            action = input("Enter the action: ").lower()
-            if action in mouse_actions:
-                response = requests.get(url + "/mouse/" + action)
-                print(response.text)
+    action = input("ReverseKeylogger> ").split(" ")
+    if action == "help":
+        if len(action) == 1:
+            print("Commands:")
+            print("  [H]elp - Displays this message")
+            print("  ma - Mouse actions")
+            print("  mm - Mouse movement")
+            print("  ka - Keyboard actions")
+            print("  kr - Keyboard repeat")
+            print("  ks - Keyboard shortcut")
+            print("  kt - Keyboard type")
+            print("  [Q]uit - Exit the program")
+        elif len(action) == 2:
+            if action[1] == "ma":
+                print("Mouse actions:")
+                print("  left - Left click")
+                print("  right - Right click")
+                print("  middle - Middle click")
+                print("  double - Double click")
+                print("  triple - Triple click")
+                print("  scrollup - Scroll up")
+                print("  scrolldown - Scroll down")
+            elif action[1] == "mm":
+                print("Mouse movement:")
+                print("  <x> <y> - Move the mouse to the coordinates")
+            elif action[1] == "ka":
+                print("Keyboard actions:")
+                print("  <key> - Press the key")
+                print("Keys:")
+                for key in keyboard_actions:
+                    print("  " + key)
+            elif action[1] == "kr":
+                print("Keyboard repeat:")
+                print("  <key> <count> - Press the key the specified number of times")
+            elif action[1] == "ks":
+                print("Keyboard shortcut:")
+                print("  <key>+<key>+... - Press the keys at the same time")
+            elif action[1] == "kt":
+                print("Keyboard type:")
+                print("  <text> - Type the given text")
             else:
-                print("Invalid action")
-        elif action == 'm':
-            (x, y) = (coord.strip() for coord in input("Enter the coordinates (x,y): ").split(","))
-            if x.isdigit() and y.isdigit():
-                response = requests.get(url + "/mouse/move/" + x.strip() + "/" + y.strip())
-                print(response.text)
-            else:
-                print("Invalid coordinates")
-
-    elif action == 'k':
-        action = input("Enter the action ([A]ction/[T]yping/[H]otkey): ").lower()
-        if action == 'a':
-            print("Keyboard actions: " + str(keyboard_actions))
-            action = input("Enter the action: ").lower()
-            if action in keyboard_actions:
-                count = input("Enter the count (default 1): ")
-                if count.isdigit():
-                    response = requests.get(url + "/keyboard/repeat/" + action + "/" + count)
-                    print(response.text)
-                else:
-                    response = requests.get(url + "/keyboard/" + action)
-                    print(response.text)
-            else:
-                print("Invalid action")
-        elif action == 't':
-            word = input("Enter the string to type: ")
-            response = requests.get(url + '/keyboard/type/"' + word + '"')
-            print(response.text)
-        elif action == 'h':
-            shortcut = input("Enter the shortcut (separate with +): ")
-            response = requests.get(url + "/keyboard/shortcut/" + shortcut)
-            print(response.text)
+                print("Invalid command")
         else:
-            print("Invalid action")
+            print("Invalid command")
+    elif action == "ma":
+        if len(action) == 2:
+            if action[1] in mouse_actions:
+                requests.get(url + "/mouse/" + action[1])
+            else:
+                print("Invalid command")
+        else:
+            print("Invalid command")
+    elif action == "mm":
+        if len(action) == 3:
+            requests.get(url + "/mouse/move/" + action[1] + "/" + action[2])
+        else:
+            print("Invalid command")
+    elif action == "ka":
+        if len(action) == 2:
+            if action[1] in keyboard_actions:
+                requests.get(url + "/keyboard/" + action[1])
+            else:
+                print("Invalid command")
+        else:
+            print("Invalid command")
+    elif action == "kr":
+        if len(action) == 3:
+            if action[1] in keyboard_actions and action[2].isdigit():
+                requests.get(url + "/keyboard/repeat/" + action[1] + "/" + action[2])
+            else:
+                print("Invalid command")
+        else:
+            print("Invalid command")
+    elif action == "ks":
+        if len(action) == 2:
+            requests.get(url + "/keyboard/shortcut/" + action[1])
+        else:
+            print("Invalid command")
+    elif action == "kt":
+        if len(action) == 2:
+            requests.get(url + '/keyboard/type/"' + action[1] + '"')
+        else:
+            print("Invalid command")
+    elif action == "q":
+        break
+        
+           

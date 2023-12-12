@@ -20,35 +20,35 @@ def mouse(action):
         ag.scroll(100)
     elif action == "scrolldown":
         ag.scroll(-100)
-    return "Mouse action: " + action  + "\n"
+    return "Mouse action: " + action
 
 # Create a route for moving the mouse
 @app.route('/mouse/move/<int:x>/<int:y>')
 def mousemove(x, y):
     ag.moveTo(x, y)
-    return "Mouse moved to: " + str(x) + ", " + str(y) + "\n"
+    return "Mouse moved to: " + str(x) + ", " + str(y)
 
 #create a route for using the keyboard
 @app.route('/keyboard/<action>')
 def keyboard(action):
     ag.press(action)
-    return "Keyboard action: " + action + "\n"
+    return "Keyboard action: " + action
 
 #create a route for repeating keyboard actions
 @app.route('/keyboard/repeat/<action>/<int:count>')
 def keyboardrepeat(action, count):
     ag.press(action, presses=count)
-    return "Keyboard action: " + action + " repeated " + str(count) + " times\n"
+    return "Keyboard action: " + action + " repeated " + str(count) + " times"
 
 #create a route for shortcuts
 @app.route('/keyboard/shortcut/<string:shortcut>')
 def keyboardshortcut(shortcut):
     shortcut_list = shortcut.split("+") 
     ag.hotkey(shortcut_list)
-    return "Keyboard shortcut: " + shortcut + "\n" 
+    return "Keyboard shortcut: " + shortcut
 
 # Create a route for typing
 @app.route('/keyboard/type/<string:word>')
 def keyboardtype(word):
     ag.write(word)
-    return "Keyboard typed: " + word + "\n"
+    return "Keyboard typed: " + word
