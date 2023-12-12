@@ -115,6 +115,10 @@ class ReverseKeylogger(cmd.Cmd):
     
     def do_q(self, arg):
         return True
+    
+    def do_eof(self, arg):
+        return True
+    
 if __name__ == '__main__':
     url = input("Enter the URL: ")
     ReverseKeylogger().cmdloop()
