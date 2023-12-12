@@ -18,7 +18,7 @@ Run the server on the target computer
 ```bash
 flask run
 ```
-run the script on the attacker's computer
+Run the script on the attacker's computer
 ```bash
 python3 reverse-keylogger.py
 ```
