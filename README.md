@@ -50,7 +50,7 @@ Mouse movement:
   <x> <y> - Move the mouse to the coordinates
 ```
 
-You could write scripts to if you really wanted to
+You could write scripts if you really wanted to
 ```bash
 $ echo "ks win+r
 > kt cmd
