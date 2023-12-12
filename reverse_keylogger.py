@@ -1,7 +1,5 @@
 import requests
-import requests
 
-#ask for the url
 url = input("Enter the URL: ")
 
 mouse_actions = ["left", "right", "middle", "double", "triple", "scrollup", "scrolldown"]
@@ -24,64 +22,45 @@ keyboard_actions = ['accept', 'add', 'alt', 'altleft', 'altright', 'apps', 'back
 'command', 'option', 'optionleft', 'optionright']
 
 while True:
-    #ask for the action, default is keyboard
     action = input("Enter the action ([M]ouse/[K]eyboard) or [Q]uit: ").lower()
 
     if action == 'q':
         break
 
     if action == 'm':
-        #choose between mouse actions and movements
         action = input("Enter the action ([A]ction/[M]ovement): ").lower()
         if action == 'a':
-            # display the mouse actions and ask for action
             print("Mouse actions: " + str(mouse_actions))
             action = input("Enter the action: ").lower()
-            # check if the action is valid
             if action in mouse_actions:
-                # send the request
                 requests.get(url + "/mouse/" + action)
             else:
                 print("Invalid action")
         elif action == 'm':
-            # ask for the coordinates and split them
             (x, y) = (coord.strip() for coord in input("Enter the coordinates (x,y): ").split(","))
-            #validate the coordinates
             if x.isdigit() and y.isdigit():
-                # send the request
                 requests.get(url + "/mouse/move/" + x.strip() + "/" + y.strip())
             else:
                 print("Invalid coordinates")
 
     elif action == 'k':
-        #choose between keyboard actions and typing
         action = input("Enter the action ([A]ction/[T]yping/[H]otkey): ").lower()
         if action == 'a':
-            # display the keyboard actions and ask for action with optional count
             print("Keyboard actions: " + str(keyboard_actions))
             action = input("Enter the action: ").lower()
-            # check if the action is valid
             if action in keyboard_actions:
-                # ask for count
                 count = input("Enter the count (default 1): ")
-                # check if the count is valid
                 if count.isdigit():
-                    # send the request
                     requests.get(url + "/keyboard/repeat/" + action + "/" + count)
                 else:
-                    # send the request
                     requests.get(url + "/keyboard/" + action)
             else:
                 print("Invalid action")
         elif action == 't':
-            # ask for string to type
             word = input("Enter the string to type: ")
-            # send the request
             requests.get(url + '/keyboard/type/"' + word + '"')
         elif action == 'h':
-            # ask for shortcut
             shortcut = input("Enter the shortcut (separate with +): ")
-            # send the request
             requests.get(url + "/keyboard/shortcut/" + shortcut)
         else:
             print("Invalid action")
