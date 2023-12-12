@@ -1,5 +1,7 @@
 import requests
 
+print("Reverse Keylogger v0.0.0(plz work)")
+
 url = input("Enter the URL: ")
 
 mouse_actions = ["left", "right", "middle", "double", "triple", "scrollup", "scrolldown"]
