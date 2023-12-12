@@ -56,5 +56,6 @@ ReverseKeylogger> ks win+r
 ReverseKeylogger> kt cmd
 ReverseKeylogger> ka enter
 ```
+---
 
 All of this implies that you have the power to start a server on the target computer, if you do, you probably don't need this.
