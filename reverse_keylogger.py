@@ -116,7 +116,7 @@ class ReverseKeylogger(cmd.Cmd):
     def do_q(self, arg):
         return True
     
-    def do_eof(self, arg):
+    def do_EOF(self, arg):
         return True
     
 if __name__ == '__main__':
