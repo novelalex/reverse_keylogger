@@ -128,7 +128,7 @@ ENV/
 env.bak/
 venv.bak/
 
-./static/screenshot.png
+static/screenshot.png
 
 # Spyder project settings
 .spyderproject
