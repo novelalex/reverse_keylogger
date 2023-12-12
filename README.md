@@ -23,7 +23,7 @@ run the script on the attacker's computer
 python3 reverse-keylogger.py
 ```
 ## Usage
-The server will be running on port 5000 by default, you can change this by setting the `FLASK_RUN_PORT` environment variable in [.flaskenv](../blob/master/.flaskenv).
+The server will be running on port 5000 by default, you can change this by setting the `FLASK_RUN_PORT` environment variable in [.flaskenv](../master/.flaskenv).
 
 The script will prompt you for the target's url
 ```
