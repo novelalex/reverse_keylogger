@@ -25,7 +25,7 @@ keyboard_actions = ['accept', 'add', 'alt', 'altleft', 'altright', 'apps', 'back
 
 while True:
     action = input("ReverseKeylogger> ").split(" ")
-    if action[0] == "help":
+    if action[0] == "help" or action[0] == "h":
         if len(action) == 1:
             print("Commands:")
             print("  [H]elp - Displays this message")
@@ -107,7 +107,7 @@ while True:
             requests.get(url + '/keyboard/type/"' + action[1] + '"')
         else:
             print("Invalid command")
-    elif action[0] == "q":
+    elif action[0] == "q" or action[0] == "quit":
         break
     else:
         print("Invalid command")
