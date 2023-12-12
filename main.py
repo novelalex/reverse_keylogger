@@ -64,10 +64,9 @@ def screenshot():
     return app.send_static_file(screenshotName)
 
 # Create a route for live streaming the screen by using js to refresh image
-@app.route('/stream/<int:fps>')
-def stream(fps):
+@app.route('/stream/<int:ms>')
+def stream(ms):
     screenshotName = 'screenshot.png'
-    ms = 1000 / fps
     ag.screenshot(f'static/{screenshotName}')
     js = f"""
     <script>
