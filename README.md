@@ -29,7 +29,7 @@ The script will prompt you for the target's url
 ```
 Enter the URL: http://localhost:5000
 ```
-Help displays all the commands
+`help` displays all the commands
 ```
 ReverseKeylogger> help
 Commands:
