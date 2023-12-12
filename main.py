@@ -1,5 +1,7 @@
-from flask import Flask
+from flask import Flask, request
 import pyautogui as ag
+import time
+
 
 app = Flask(__name__)
 
@@ -52,3 +54,28 @@ def keyboardshortcut(shortcut):
 def keyboardtype(word):
     ag.write(word)
     return "Keyboard typed: " + word
+
+# Create a route for getting the screenshot
+@app.route('/screenshot')
+def screenshot():
+    screenshotName = 'screenshot.png'
+    ag.screenshot(f'static/{screenshotName}')
+    #serve the screenshot as a file
+    return app.send_static_file(screenshotName)
+
+# Create a route for live streaming the screen by using js to refresh image
+@app.route('/stream/<int:fps>')
+def stream(fps):
+    screenshotName = 'screenshot.png'
+    ms = 1000 / fps
+    ag.screenshot(f'static/{screenshotName}')
+    js = f"""
+    <script>
+    function refresh() {{
+        window.location.reload(true);
+    }}
+    setTimeout(refresh, {ms});
+    </script>
+    """
+    return js + f'<img src="{app.static_url_path}/{screenshotName}" alt="screenshot" width="100%">'
+    
